@@ -18,6 +18,7 @@ public class JsonData implements Serializable {
         return status;
     }
 
+    //test
     public void setStatus(String status) {
         this.status = status;
     }
