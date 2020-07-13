@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/razer?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: 123456
+
+#  通过触发器，去控制什么时候进行热加载部署新的文件
+devtools:
+  restart:
+    trigger-file=trigger.txt:
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.yubin.springbootmybatis.pojo
+
+logging:
+  level:
+    com:
+      yubin:
+        springbootmybatis: debug
+
+

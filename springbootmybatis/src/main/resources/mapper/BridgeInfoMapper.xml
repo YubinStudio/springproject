@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubin.springbootmybatis.mapper.BridgeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yubin.springbootmybatis.pojo.BridgeInfo">
+    <result column="nodeIp" jdbcType="VARCHAR" property="nodeip" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="weather" jdbcType="VARCHAR" property="weather" />
+    <result column="windDirection" jdbcType="INTEGER" property="winddirection" />
+    <result column="windSpeed" jdbcType="VARCHAR" property="windspeed" />
+    <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+    <result column="waterLevel" jdbcType="VARCHAR" property="waterlevel" />
+    <result column="gravity" jdbcType="VARCHAR" property="gravity" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+    <result column="subsidenceDegree" jdbcType="VARCHAR" property="subsidencedegree" />
+    <result column="displacementDegree" jdbcType="VARCHAR" property="displacementdegree" />
+    <result column="tiltDegree" jdbcType="VARCHAR" property="tiltdegree" />
+    <result column="affectResult" jdbcType="INTEGER" property="affectresult" />
+    <result column="dataTime" jdbcType="VARCHAR" property="datatime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    nodeIp, status, weather, windDirection, windSpeed, temperature, waterLevel, gravity, 
+    frequency, subsidenceDegree, displacementDegree, tiltDegree, affectResult, dataTime
+  </sql>
+  <select id="selectByExample" parameterType="com.yubin.springbootmybatis.pojo.BridgeInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from source_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yubin.springbootmybatis.pojo.BridgeInfoExample">
+    delete from source_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yubin.springbootmybatis.pojo.BridgeInfo">
+    insert into source_data (nodeIp, status, weather, 
+      windDirection, windSpeed, temperature, 
+      waterLevel, gravity, frequency, 
+      subsidenceDegree, displacementDegree, tiltDegree, 
+      affectResult, dataTime)
+    values (#{nodeip,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{weather,jdbcType=VARCHAR}, 
+      #{winddirection,jdbcType=INTEGER}, #{windspeed,jdbcType=VARCHAR}, #{temperature,jdbcType=VARCHAR}, 
+      #{waterlevel,jdbcType=VARCHAR}, #{gravity,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, 
+      #{subsidencedegree,jdbcType=VARCHAR}, #{displacementdegree,jdbcType=VARCHAR}, #{tiltdegree,jdbcType=VARCHAR}, 
+      #{affectresult,jdbcType=INTEGER}, #{datatime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yubin.springbootmybatis.pojo.BridgeInfo">
+    insert into source_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nodeip != null">
+        nodeIp,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="weather != null">
+        weather,
+      </if>
+      <if test="winddirection != null">
+        windDirection,
+      </if>
+      <if test="windspeed != null">
+        windSpeed,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="waterlevel != null">
+        waterLevel,
+      </if>
+      <if test="gravity != null">
+        gravity,
+      </if>
+      <if test="frequency != null">
+        frequency,
+      </if>
+      <if test="subsidencedegree != null">
+        subsidenceDegree,
+      </if>
+      <if test="displacementdegree != null">
+        displacementDegree,
+      </if>
+      <if test="tiltdegree != null">
+        tiltDegree,
+      </if>
+      <if test="affectresult != null">
+        affectResult,
+      </if>
+      <if test="datatime != null">
+        dataTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nodeip != null">
+        #{nodeip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="weather != null">
+        #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="winddirection != null">
+        #{winddirection,jdbcType=INTEGER},
+      </if>
+      <if test="windspeed != null">
+        #{windspeed,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="waterlevel != null">
+        #{waterlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="gravity != null">
+        #{gravity,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidencedegree != null">
+        #{subsidencedegree,jdbcType=VARCHAR},
+      </if>
+      <if test="displacementdegree != null">
+        #{displacementdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="tiltdegree != null">
+        #{tiltdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="affectresult != null">
+        #{affectresult,jdbcType=INTEGER},
+      </if>
+      <if test="datatime != null">
+        #{datatime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yubin.springbootmybatis.pojo.BridgeInfoExample" resultType="java.lang.Long">
+    select count(*) from source_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update source_data
+    <set>
+      <if test="record.nodeip != null">
+        nodeIp = #{record.nodeip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.weather != null">
+        weather = #{record.weather,jdbcType=VARCHAR},
+      </if>
+      <if test="record.winddirection != null">
+        windDirection = #{record.winddirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.windspeed != null">
+        windSpeed = #{record.windspeed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temperature != null">
+        temperature = #{record.temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waterlevel != null">
+        waterLevel = #{record.waterlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gravity != null">
+        gravity = #{record.gravity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frequency != null">
+        frequency = #{record.frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subsidencedegree != null">
+        subsidenceDegree = #{record.subsidencedegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displacementdegree != null">
+        displacementDegree = #{record.displacementdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tiltdegree != null">
+        tiltDegree = #{record.tiltdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.affectresult != null">
+        affectResult = #{record.affectresult,jdbcType=INTEGER},
+      </if>
+      <if test="record.datatime != null">
+        dataTime = #{record.datatime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update source_data
+    set nodeIp = #{record.nodeip,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      weather = #{record.weather,jdbcType=VARCHAR},
+      windDirection = #{record.winddirection,jdbcType=INTEGER},
+      windSpeed = #{record.windspeed,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=VARCHAR},
+      waterLevel = #{record.waterlevel,jdbcType=VARCHAR},
+      gravity = #{record.gravity,jdbcType=VARCHAR},
+      frequency = #{record.frequency,jdbcType=VARCHAR},
+      subsidenceDegree = #{record.subsidencedegree,jdbcType=VARCHAR},
+      displacementDegree = #{record.displacementdegree,jdbcType=VARCHAR},
+      tiltDegree = #{record.tiltdegree,jdbcType=VARCHAR},
+      affectResult = #{record.affectresult,jdbcType=INTEGER},
+      dataTime = #{record.datatime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+<!--根据ip和重力修改-->
+ <!-- <update id="updateByIpAndGravity" parameterType="map">
+    update source_data
+    set nodeIp = #{record.nodeip,jdbcType=VARCHAR},
+    status = #{record.status,jdbcType=INTEGER},
+    weather = #{record.weather,jdbcType=VARCHAR},
+    windDirection = #{record.winddirection,jdbcType=INTEGER},
+    windSpeed = #{record.windspeed,jdbcType=VARCHAR},
+    temperature = #{record.temperature,jdbcType=VARCHAR},
+    waterLevel = #{record.waterlevel,jdbcType=VARCHAR},
+    gravity = #{record.gravity,jdbcType=VARCHAR},
+    frequency = #{record.frequency,jdbcType=VARCHAR},
+    subsidenceDegree = #{record.subsidencedegree,jdbcType=VARCHAR},
+    displacementDegree = #{record.displacementdegree,jdbcType=VARCHAR},
+    tiltDegree = #{record.tiltdegree,jdbcType=VARCHAR},
+    affectResult = #{record.affectresult,jdbcType=INTEGER},
+    dataTime = #{record.datatime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    where nodeIp=#{ip} and gravity=#{gravity}
+  </update>-->
+  <select id="getMaxTemperature" parameterType="java.lang.String" resultType="java.lang.String">
+    select MAX(temperature)  from source_data where dataTime = #{datatime,jdbcType=VARCHAR}
+  </select>
+  <select id="countBridgeInfo"  resultType="java.lang.String">
+    select count(1)  from source_data
+  </select>
+</mapper>

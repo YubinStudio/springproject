@@ -1,0 +1,6 @@
+version=1
+
+
+
+
+只要有改动就会触发springboot重启
